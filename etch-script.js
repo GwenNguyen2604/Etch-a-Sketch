@@ -1,8 +1,7 @@
 const   DF_COLOR = "#000000";
 const   DF_CLEAR = "#ffffff";
 const   DF_GRID = 16;
-const   _MAP = {'erase':0, 'black':1, 'color':2, 
-                 'grayscale': 3, 'random': 4};
+const   _MAP = {'erase':0, 'black':1, 'color':2, 'grayscale': 3, 'random': 4};
 
 var Color = DF_COLOR;  // Color, default is black
 var isDrawing = false; // Boolean indicating whether mouse is drawing
@@ -61,20 +60,20 @@ function Drawer(event) {
     if(isDrawing) {
         /* Go through conditions */
         switch(condition) {
-            case 0:
+            case _MAP['erase']:
                 Color = DF_CLEAR;
                 break;
-            case 1:
+            case _MAP['black']:
                 Color = DF_COLOR;
                 break;
-            case 2:
+            case _MAP['color']:
                 Color = colorInput.value.toString(16).padStart(6, '0');
                 break;
-            case 3:
+            case _MAP['grayscale']:
                 let c = event.target.style.backgroundColor;
                 Color = GrayScaleColor(c);
                 break;
-            case 4:
+            case _MAP['random']:
             default:
                 Color = "#" + Math.floor(Math.random()*16777215).toString(16);
         }
@@ -91,8 +90,7 @@ function Drawer(event) {
 // @return: a string indicating rgb value
 // ============================================================================
 function GrayScaleColor(value) {
-    let rgb = value.substring(4, value.length-1)
-              .replace(/ /g, '').split(',');
+    let rgb = value.substring(4, value.length-1).replace(/ /g, '').split(',');
     /* If the grid is already on grayscale */
     if(rgb[0] == rgb[1] && rgb[0] == rgb[2]) {
         /* Return if the color is black */
