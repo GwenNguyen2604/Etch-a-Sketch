@@ -12,6 +12,7 @@
 
     <!-- BODY -->
     <body>
+        <!-- options -->
         <div id="options">
             <!-- Buttons -->
             <input id="colorOption" type ="color">  <!-- Changes drawing color -->
@@ -20,15 +21,17 @@
             <button id="random">Random</button>     <!-- Randomize color effect -->
             <button id="erase">Erase</button>       <!-- Eraser -->
             <button id="clear">Clear</button>       <!-- Clear entire canvas -->
+            <button id="gridVis">Show Grid</button> <!-- Show grid lines -->
             <!-- Grid size slider -->
             <div id="gridS">
                 <p id = "sizeLabel"></p>
                 <input id="gridSize" type="range" min = "1" max = "100">
             </div>
-
         </div>
 
+        <!-- canvas -->
         <div id="canvas"></div>
+
         <!-- Script -->
         <script src="etch-script.js"></script>
     </body>

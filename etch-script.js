@@ -1,15 +1,17 @@
-const   DF_COLOR = "#000000";
-const   DF_CLEAR = "#ffffff";
-const   DF_GRID = 16;
-const   _MAP = {'erase':0, 'black':1, 'color':2, 'grayscale': 3, 'random': 4};
+const   DF_COLOR = "#000000";   // Default color
+const   DF_CLEAR = "#ffffff";   // Canvas/cleared canvas color
+const   DF_GRID = 16;           // Default number of grid
+const   _MAP = {'erase':0, 'black':1, // Condition map
+                'color':2, 'grayscale': 3, 'random': 4};
 
 var Color = DF_COLOR;  // Color, default is black
 var isDrawing = false; // Boolean indicating whether mouse is drawing
+var gridOn = false;    // Boolean toggling grid
 var condition = _MAP['black']; // int number indicating current mode
 
-// =====================================
+// =======================================================
 // Doc elements
-// =====================================
+// =======================================================
 /* Color Input */
 const colorInput = document.getElementById("colorOption");
 
@@ -19,12 +21,11 @@ const graySc = document.getElementById("graySc");   // Gray Scale
 const ranColor = document.getElementById("random"); // Random color
 const erase = document.getElementById("erase");     // Eraser
 const clear = document.getElementById("clear");     // Clear button
+const gridVis = document.getElementById("gridVis"); // Grid vislibility
 
 /* Size slider and its label */
-const sizeLabel = document.getElementById("sizeLabel"); //Grid size label
-      sizeLabel.innerHTML = `${DF_GRID} x ${DF_GRID}`;
+const sizeLabel = document.getElementById("sizeLabel"); // Grid size label
 const gridSize = document.getElementById("gridSize");   // Grid sizing
-      gridSize.value = `${DF_GRID}`;
 
 /* Canvas */
 const canvas = document.getElementById("canvas");
@@ -36,16 +37,17 @@ const canvas = document.getElementById("canvas");
 // @param: arr - array of cells
 // @return: none
 // ============================================================================
-function CanvasDrawer(arr) {
-    for(var el of arr) {
+function CanvasDrawer() {
+    let arr = document.getElementsByClassName("cell");
+    for(var cells of arr) {
         /* Draw on canvas as long as mouse is down. */
-        el.onmousedown = (e) => { 
+        cells.onmousedown = (e) => { 
             isDrawing = true;
             Drawer(e);
         };
-        el.onmouseover = (e) => {Drawer(e);};
+        cells.onmouseover = (e) => {Drawer(e);};
         /* Stop drawing if mouse is up */
-        el.onmouseup = () => {isDrawing = false;};
+        cells.onmouseup = () => {isDrawing = false;};
     }
 }
 
@@ -120,8 +122,7 @@ function CanvasConstructor(num) {
         let cell = CreateUtil('div', grid, "cell", 1);
         cell.style.backgroundColor = DF_CLEAR;
     }
-    let arr = document.getElementsByClassName("cell");
-    CanvasDrawer(arr);   /* Invoke drawer function */
+    CanvasDrawer();   /* Invoke drawer function */
 }
 
 // ============================================================================
@@ -144,14 +145,19 @@ function CreateUtil(type, parent, id_name, name_fl = 0) {
 // ============================================================================
 // Scripts
 // ============================================================================
-// On loaded, invoke CanvasConstructor
-window.onload = () => {CanvasConstructor(DF_GRID);}; 
+// On loaded, invoke CanvasConstructor, set size at 16.
+window.onload = () => {
+    CanvasConstructor(DF_GRID);
+    sizeLabel.innerHTML = `${DF_GRID} x ${DF_GRID}`;
+    gridSize.value = `${DF_GRID}`;
+}; 
 
 // This script prevents dragging
 canvas.ondragstart = () => {return false;};
 
 // On clicked, set current condition to what each button indicates
 colorInput.onchange = () => {condition = _MAP['color'];};
+colorInput.onclick = () => {condition = _MAP['color'];};
 ranColor.onclick = () => {condition = _MAP['random'];};
 graySc.onclick = () => {condition = _MAP['grayscale'];};
 black.onclick = () => {condition = _MAP['black'];};
@@ -160,9 +166,25 @@ erase.onclick = () => {condition = _MAP['erase'];};
 // Once clicked, clear the entire canvas
 clear.onclick = () => {    
     var arr = document.getElementsByClassName("cell");
-    for(var el of arr)
-        el.style.backgroundColor = DF_CLEAR;
+    for(var cells of arr)
+        cells.style.backgroundColor = DF_CLEAR;
 }; 
+
+// Once clicked toggle canvas grid line visibility
+gridVis.onclick = () => {
+    let arr = document.getElementsByClassName("cell");
+    if(!gridOn) {
+        /* If toggle is off, add outline and turn on */
+        for(var cells of arr)
+            cells.style.outline = '#9fa0a2 solid 1px';
+        gridOn = true;
+    } else {
+        /* If toggle is on, remove outline and turn off */
+        for(var cells of arr)
+            cells.style.outline = 'none';
+        gridOn = false; 
+    }
+};
 
 // Remove current canvas and construct a new one with new size
 gridSize.onchange = (e) => {
