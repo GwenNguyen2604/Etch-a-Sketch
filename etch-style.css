@@ -21,6 +21,14 @@ button, #colorOption {
     cursor: pointer;
 }
 
+button:hover, #colorOption:hover { 
+    background-color: #848484;
+}
+
+button:active, #colorOption:active {
+    background-color: #767676;
+}
+
 #canvas {
     display: flex;
     justify-content: center;
