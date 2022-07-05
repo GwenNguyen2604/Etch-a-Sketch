@@ -1,13 +1,45 @@
+body {
+    display: flex;
+    background-color: #e7cccc;
+}
+
+button, #colorOption {
+    flex: 0 0 auto;
+    width: 100px;
+    height: 35px;
+    margin-bottom: 15px;
+    padding: 3px 5px;
+    background-color: #999999;
+    border: 2px dashed black;
+    font-style: bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
 #canvas {
-    display : flex;
-    justify-content : center;
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
 }
 
 #grid {
-    border : 3px solid black;
-    height : 700px;
-    width : 700px;
-    display : grid;
-    grid-template-columns : repeat(var(--grid-rows), 1fr);
-    grid-template-rows : repeat(var(--grid-cols), 1fr);
+    border: 10px inset #3e3e3e;
+    border-radius: 3px;
+    height: 600px;
+    width: 600px;
+    display: grid;
+    grid-template-columns: repeat(var(--grid-dim), 1fr);
+    grid-template-rows: repeat(var(--grid-dim), 1fr);
 }
+
+#options {
+    padding: 100px 150px 80px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
