@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!-- HEAD -->
     <head>
+        <!-- I gave up on creating elements using solely DOM manipulations -->
         <meta charset="utf-8">
         <title> Etch a sketch page </title>
         <meta name="description" content="Author: Gwen Nguyen">
+        <!-- StyleSheet -->
         <link rel="stylesheet" type="text/css" href="etch-style.css">
     </head>
+
+    <!-- BODY -->
     <body>
-        <div id="options"></div>
+        <div id="options">
+            <!-- Buttons -->
+            <input id="colorOption" type ="color">  <!-- Changes drawing color -->
+            <button id="black">Black</button>       <!-- Default/Black color -->
+            <button id="graySc">Gray Scale</button> <!-- Gray scale color -->
+            <button id="random">Random</button>     <!-- Randomize color effect -->
+            <button id="erase">Erase</button>       <!-- Eraser -->
+            <button id="clear">Clear</button>       <!-- Clear entire canvas -->
+            <!-- Grid size slider -->
+            <div id="gridS">
+                <p id = "sizeLabel"></p>
+                <input id="gridSize" type="range" min = "1" max = "100">
+            </div>
+
+        </div>
+
         <div id="canvas"></div>
+        <!-- Script -->
         <script src="etch-script.js"></script>
     </body>
 </html>
