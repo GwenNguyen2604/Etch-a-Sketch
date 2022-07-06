@@ -23,16 +23,16 @@ const erase = document.getElementById("erase");     // Eraser
 const clear = document.getElementById("clear");     // Clear button
 const gridVis = document.getElementById("gridVis"); // Grid vislibility
 
-/* Size slider and its label */
-const sizeLabel = document.getElementById("sizeLabel"); // Grid size label
-const gridSize = document.getElementById("gridSize");   // Grid sizing
+/* Size sizeSlider and its label */
+const sizeLabel = document.getElementById("sizeLabel");   // Grid size label
+const sizeSlider = document.getElementById("sizeSlider"); // Grid sizing
 
 /* Canvas */
 const canvas = document.getElementById("canvas");
 
 
 // ============================================================================
-// This funciton takes in the current array of cells in a canvas iterate through
+// This funciton takes in the current array of cells in a canvas, iterate through
 // it and draw
 // @param: arr - array of cells
 // @return: none
@@ -149,7 +149,7 @@ function CreateUtil(type, parent, id_name, name_fl = 0) {
 window.onload = () => {
     CanvasConstructor(DF_GRID);
     sizeLabel.innerHTML = `${DF_GRID} x ${DF_GRID}`;
-    gridSize.value = `${DF_GRID}`;
+    sizeSlider.value = `${DF_GRID}`;
 }; 
 
 // This script prevents dragging
@@ -187,13 +187,13 @@ gridVis.onclick = () => {
 };
 
 // Remove current canvas and construct a new one with new size
-gridSize.onchange = (e) => {
+sizeSlider.onchange = (e) => {
     let gr = document.getElementById("grid");
     gr.remove();
     CanvasConstructor(e.target.value); 
 };
 
 // Update the size info as the slide is sliding
-gridSize.onmousemove = (e) => {
+sizeSlider.onmousemove = (e) => {
     sizeLabel.innerHTML = `${e.target.value} x ${e.target.value}`;
 };
