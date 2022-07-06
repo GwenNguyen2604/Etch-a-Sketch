@@ -1,53 +1,91 @@
+
+
+/* ================== body =================== */
 body {
     display: flex;
     background-color: #e7cccc;
 }
 
-button, #colorOption {
-    flex: 0 0 auto;
-    width: 100px;
-    height: 35px;
-    margin-bottom: 15px;
-    padding: 3px 5px;
-    background-color: #999999;
-    border: 2px dashed black;
-    font-style: bold;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 7px;
-    cursor: pointer;
-}
-
-button:hover, #colorOption:hover { 
-    background-color: #848484;
-}
-
-button:active, #colorOption:active {
-    background-color: #767676;
-}
-
-#canvas {
-    display: flex;
-    justify-content: center;
-    padding-top: 80px;
-}
-
-#grid {
-    border: 10px inset #3e3e3e;
-    border-radius: 3px;
-    height: 600px;
-    width: 600px;
-    display: grid;
-    grid-template-columns: repeat(var(--grid-dim), 1fr);
-    grid-template-rows: repeat(var(--grid-dim), 1fr);
-}
-
+/* ============== options div ================ */
 #options {
     padding: 100px 150px 80px 50px;
     display: flex;
     flex-direction: column;
 }
+    /* ============== buttons ================ */
+    button, #colorOption {
+        flex: 0 0 auto;
+        width: 100px;
+        height: 35px;
+        margin-bottom: 15px;
+        padding: 3px 5px;
+        background-color: #999999;
+        border: 2px dashed black;
+        font-style: bold;
+        font-size: 15px;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        color: #ffffff;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 7px;
+        cursor: pointer;
+    }
+    button:hover, #colorOption:hover { 
+        background-color: #848484;
+    }
+    button:active, #colorOption:active {
+        background-color: #767676;
+    }
+
+
+/* ============== gridS div ================== */
+#gridS {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    /* ============= size label ============== */
+    #sizeLabel {
+        margin-bottom: 5px;
+        font-style: bold;
+        font-size: 16px;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+    /* ============== slider ================= */
+    #sizeSlider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 3px;
+        background: #999999;
+        outline: none;
+        border-radius: 2px;}
+
+    #sizeSlider:hover {background: #848484;}
+
+    #sizeSlider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background:  #900c3f;
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+
+/* ============== canvas div ================= */
+#canvas {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+}
+    /* ================ grid ================= */
+    #grid {
+        border: 10px inset #3e3e3e;
+        border-radius: 3px;
+        height: 600px;
+        width: 600px;
+        display: grid;
+        grid-template-columns: repeat(var(--grid-dim), 1fr);
+        grid-template-rows: repeat(var(--grid-dim), 1fr);
+    }
 
