@@ -88,5 +88,3 @@ body {
         grid-template-columns: repeat(var(--grid-dim), 1fr);
         grid-template-rows: repeat(var(--grid-dim), 1fr);
     }
-
-/**/
